@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starbuck_clone/view/intro/utils/alert_dialog.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -13,6 +14,7 @@ class IntroPage extends StatelessWidget {
             'assets/boarding1.png',
             fit: BoxFit.cover,
             height: double.infinity,
+            width: double.infinity,
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -44,7 +46,9 @@ class IntroPage extends StatelessWidget {
                 Material(
                   color: const Color(0xff565654).withOpacity(0.5),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () => Get.dialog(
+                      AlertDialogWidget(),
+                    ),
                     child: SizedBox(
                       width: Get.width * 48 / 100,
                       height: 60,

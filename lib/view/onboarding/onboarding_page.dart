@@ -2,7 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:get/get.dart';
-import 'package:starbuck_clone/view/onboarding/controller/onboarding_controller.dart';
+import 'package:starbuck_clone/controller/onboarding_controller.dart';
 
 class OnboardingPage extends StatelessWidget {
   OnboardingPage({super.key});
