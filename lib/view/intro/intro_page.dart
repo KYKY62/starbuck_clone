@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starbuck_clone/routes/routes.dart';
 import 'package:starbuck_clone/view/intro/utils/alert_dialog.dart';
 
 class IntroPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class IntroPage extends StatelessWidget {
                 Material(
                   color: const Color(0xff565654).withOpacity(0.5),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.signup),
                     child: SizedBox(
                       width: Get.width * 48 / 100,
                       height: 60,
