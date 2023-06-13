@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438067296868",
+    "project_id": "starbuckclone",
+    "storage_bucket": "starbuckclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438067296868:android:d5ab6b2ab73e5bbcbf7d71",
+        "android_client_info": {
+          "package_name": "com.example.starbuck_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438067296868-abbo063jcgvobcbi0o2424u17j8lbj0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9k0rMui2NZUzMEgWJ4Jlgt5hzwbbHM28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438067296868-abbo063jcgvobcbi0o2424u17j8lbj0t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
