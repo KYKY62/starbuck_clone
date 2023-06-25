@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:starbuck_clone/controller/signup_controller.dart';
+import 'package:starbuck_clone/view/sign_up/utils/textform_password_widget.dart';
+import 'package:starbuck_clone/view/sign_up/utils/textform_widget.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
+
+  final signUpC = Get.find<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,87 +31,6 @@ class SignUpPage extends StatelessWidget {
         child: ListView(
           children: [
             const Text(
-              "Please input your phone number",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              children: [
-                const Text(
-                  "+62",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  width: 20.0,
-                ),
-                Expanded(
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      labelStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const SizedBox(
-                    child: Text(
-                      "Send OTP",
-                      style: TextStyle(
-                        color: Color(0xff007042),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            const Text(
-              "Verify your mobile number with OTP via sms",
-              style: TextStyle(
-                fontSize: 12,
-              ),
-            ),
-            const SizedBox(
-              height: 15.0,
-            ),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Input OTP number*',
-                hintText: 'Input OTP number*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            const Text(
               "Please input your account information",
               style: TextStyle(
                 color: Colors.black,
@@ -115,64 +40,52 @@ class SignUpPage extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Email*',
-                hintText: 'Email*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-              textInputAction: TextInputAction.next,
+            TextFormWidget(
+              controller: signUpC.emailC,
+              labelText: "Email*",
+              hintText: "Email*",
+              textinputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
+            Obx(
+              () => TextFormPasswordWidget(
+                controller: signUpC.password,
+                obsecureText: signUpC.obsecurePassword.value,
                 labelText: 'Password*',
                 hintText: 'Password*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
+                suffixIcon: GestureDetector(
+                  onTap: () => signUpC.obsecurePassword.value =
+                      !signUpC.obsecurePassword.value,
+                  child: Icon(
+                    signUpC.obsecurePassword.value == true
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                  ),
                 ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-                suffixIcon: Icon(Icons.visibility),
+                textInputAction: TextInputAction.next,
               ),
-              textInputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
+            Obx(
+              () => TextFormPasswordWidget(
+                controller: signUpC.reconfirmPassword,
+                obsecureText: signUpC.obsecureReconfirmPassword.value,
                 labelText: 'Reconfirm password*',
                 hintText: 'Reconfirm password*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
+                suffixIcon: GestureDetector(
+                  onTap: () => signUpC.obsecureReconfirmPassword.value =
+                      !signUpC.obsecureReconfirmPassword.value,
+                  child: Icon(
+                    signUpC.obsecureReconfirmPassword.value == true
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                  ),
                 ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-                suffixIcon: Icon(Icons.visibility),
+                textInputAction: TextInputAction.done,
               ),
             ),
             const SizedBox(
@@ -188,81 +101,38 @@ class SignUpPage extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'First Name*',
-                hintText: 'First Name*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-              textInputAction: TextInputAction.next,
+            TextFormWidget(
+              controller: signUpC.firstNameC,
+              labelText: 'First Name*',
+              hintText: 'First Name*',
+              textinputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Last Name*',
-                hintText: 'Last Name*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-              textInputAction: TextInputAction.next,
+            TextFormWidget(
+              controller: signUpC.lastNameC,
+              labelText: 'Last Name*',
+              hintText: 'Last Name*',
+              textinputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Date of birth*',
-                hintText: 'Date of birth*',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-              textInputAction: TextInputAction.next,
+            TextFormWidget(
+              controller: signUpC.birthDateC,
+              labelText: 'Date of birth*',
+              hintText: 'Date of birth*',
+              textinputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 10.0,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Favorite Beverage',
-                hintText: 'Favorite Beverage',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
+            TextFormWidget(
+              controller: signUpC.favoriteBeverageC,
+              labelText: 'Favorite Beverage',
+              hintText: 'Favorite Beverage',
+              textinputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 20.0,
@@ -298,11 +168,15 @@ class SignUpPage extends StatelessWidget {
             ),
             Row(
               children: [
-                Checkbox(
-                  value: false, //belum diatur valuenya
-                  onChanged: (value) {},
-                  checkColor: Colors.white,
-                  activeColor: const Color(0xff007042),
+                Obx(
+                  () => Checkbox(
+                    value: signUpC.checkTheValue.value,
+                    onChanged: (value) {
+                      signUpC.toggleValue(value!);
+                    },
+                    checkColor: Colors.white,
+                    activeColor: const Color(0xff007042),
+                  ),
                 ),
                 const Expanded(
                   child: Column(

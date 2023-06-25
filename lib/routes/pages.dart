@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:starbuck_clone/bindings/onboarding_b.dart';
+import 'package:starbuck_clone/bindings/signup_b.dart';
 import 'package:starbuck_clone/routes/routes.dart';
 import 'package:starbuck_clone/view/intro/intro_page.dart';
 import 'package:starbuck_clone/view/onboarding/onboarding_page.dart';
@@ -18,7 +19,8 @@ class AppPages {
     ),
     GetPage(
       name: Routes.signup,
-      page: () => const SignUpPage(),
+      page: () => SignUpPage(),
+      binding: SignUpB(),
     ),
   ];
 }
