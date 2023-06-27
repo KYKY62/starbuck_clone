@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starbuck_clone/routes/routes.dart';
 
 class SignUpController extends GetxController {
   final obsecurePassword = true.obs;
@@ -12,9 +15,44 @@ class SignUpController extends GetxController {
 
   final emailC = TextEditingController();
   final firstNameC = TextEditingController();
-  final password = TextEditingController();
-  final reconfirmPassword = TextEditingController();
+  final passwordC = TextEditingController();
+  final reconfirmPasswordC = TextEditingController();
   final lastNameC = TextEditingController();
-  final birthDateC = TextEditingController();
   final favoriteBeverageC = TextEditingController();
+
+  void signUpWithEmail(
+    String email,
+    String password,
+    String firstname,
+    String lastname,
+    String favoritebeverage,
+  ) async {
+    try {
+      FirebaseAuth auth = FirebaseAuth.instance;
+
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      String userId = userCredential.user!.uid;
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      await firestore.collection('users').doc(userId).set({
+        'email': email,
+        'firstname': firstname,
+        'lastname': lastname,
+        'favoritebeverage': favoritebeverage,
+      });
+
+      emailC.clear();
+      passwordC.clear();
+      reconfirmPasswordC.clear();
+      firstNameC.clear();
+      lastNameC.clear();
+      favoriteBeverageC.clear();
+
+      Get.toNamed(Routes.home);
+    } catch (e) {}
+  }
 }

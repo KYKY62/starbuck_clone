@@ -29,6 +29,7 @@ class SignUpPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             const Text(
               "Please input your account information",
@@ -51,7 +52,7 @@ class SignUpPage extends StatelessWidget {
             ),
             Obx(
               () => TextFormPasswordWidget(
-                controller: signUpC.password,
+                controller: signUpC.passwordC,
                 obsecureText: signUpC.obsecurePassword.value,
                 labelText: 'Password*',
                 hintText: 'Password*',
@@ -72,7 +73,7 @@ class SignUpPage extends StatelessWidget {
             ),
             Obx(
               () => TextFormPasswordWidget(
-                controller: signUpC.reconfirmPassword,
+                controller: signUpC.reconfirmPasswordC,
                 obsecureText: signUpC.obsecureReconfirmPassword.value,
                 labelText: 'Reconfirm password*',
                 hintText: 'Reconfirm password*',
@@ -114,15 +115,6 @@ class SignUpPage extends StatelessWidget {
               controller: signUpC.lastNameC,
               labelText: 'Last Name*',
               hintText: 'Last Name*',
-              textinputAction: TextInputAction.next,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            TextFormWidget(
-              controller: signUpC.birthDateC,
-              labelText: 'Date of birth*',
-              hintText: 'Date of birth*',
               textinputAction: TextInputAction.next,
             ),
             const SizedBox(
@@ -204,6 +196,49 @@ class SignUpPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Material(
+              color: const Color(0xff007042),
+              borderRadius: BorderRadius.circular(16),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () {
+                  String password = signUpC.passwordC.text;
+                  String confirmPassword = signUpC.reconfirmPasswordC.text;
+                  if (password == confirmPassword) {
+                    signUpC.signUpWithEmail(
+                      signUpC.emailC.text,
+                      signUpC.passwordC.text,
+                      signUpC.firstNameC.text,
+                      signUpC.lastNameC.text,
+                      signUpC.favoriteBeverageC.text,
+                    );
+                  } else {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        duration: Duration(seconds: 3),
+                        message: "Password and ReconfirmPassword do not match",
+                      ),
+                    );
+                  }
+                },
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
