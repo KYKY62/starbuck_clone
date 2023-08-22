@@ -22,6 +22,7 @@ class AlertDialogWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
+            controller: alertdialogC.emailC,
             decoration: const InputDecoration(
               labelText: 'Email',
               hintText: 'Email',
@@ -36,7 +37,8 @@ class AlertDialogWidget extends StatelessWidget {
           ),
           Obx(
             () => TextFormField(
-              obscureText: alertdialogC.obsecureText.value,
+              controller: alertdialogC.passwordC,
+              obscureText: alertdialogC.obsecurePassword.value,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -48,10 +50,10 @@ class AlertDialogWidget extends StatelessWidget {
                   color: Colors.black,
                 ),
                 suffixIcon: GestureDetector(
-                  onTap: () => alertdialogC.obsecureText.value =
-                      !alertdialogC.obsecureText.value,
+                  onTap: () => alertdialogC.obsecurePassword.value =
+                      !alertdialogC.obsecurePassword.value,
                   child: Icon(
-                    alertdialogC.obsecureText.value == true
+                    alertdialogC.obsecurePassword.value == true
                         ? Icons.visibility_off
                         : Icons.visibility,
                   ),
@@ -136,19 +138,27 @@ class AlertDialogWidget extends StatelessWidget {
               const SizedBox(
                 width: 15.0,
               ),
-              Container(
-                width: 80,
-                height: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: Colors.green,
-                ),
-                child: const Center(
-                  child: Text(
-                    "SIGN IN",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  alertdialogC.signUpWithEmail(
+                    alertdialogC.emailC.text,
+                    alertdialogC.passwordC.text,
+                  );
+                },
+                child: Container(
+                  width: 80,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: Colors.green,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "SIGN IN",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

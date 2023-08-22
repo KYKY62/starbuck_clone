@@ -25,7 +25,7 @@ class OnboardingController extends GetxController {
         Padding(
           padding: const EdgeInsets.only(bottom: 18.0),
           child: GestureDetector(
-            onTap: () => Get.toNamed(Routes.intro),
+            onTap: () => Get.offAndToNamed(Routes.intro),
             child: const Align(
               alignment: Alignment.bottomCenter,
               child: Text(

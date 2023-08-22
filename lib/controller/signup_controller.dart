@@ -53,6 +53,15 @@ class SignUpController extends GetxController {
       favoriteBeverageC.clear();
 
       Get.toNamed(Routes.home);
-    } catch (e) {}
+    } catch (e) {
+      if (e.toString().contains("email-already-in-use")) {
+        Get.snackbar(
+          'Error',
+          'The email address is already in use by another account.',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    }
   }
 }

@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
               Get.back();
+              Get.back();
             },
             icon: const Icon(Icons.logout),
           ),
