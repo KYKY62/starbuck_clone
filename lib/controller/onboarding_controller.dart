@@ -1,8 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starbuck_clone/routes/routes.dart';
 
 class OnboardingController extends GetxController {
+  _loadFromStorage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool onBoardingCompleted = prefs.getBool('onboarding') ?? false;
+
+    if (onBoardingCompleted) {
+      Get.offAndToNamed(Routes.intro);
+    }
+  }
+
   List<Widget> imageBoarding = [
     Image.asset(
       'assets/boarding1.png',
@@ -25,7 +35,11 @@ class OnboardingController extends GetxController {
         Padding(
           padding: const EdgeInsets.only(bottom: 18.0),
           child: GestureDetector(
-            onTap: () => Get.offAndToNamed(Routes.intro),
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('onboarding', true);
+              Get.offAndToNamed(Routes.intro);
+            },
             child: const Align(
               alignment: Alignment.bottomCenter,
               child: Text(
@@ -42,4 +56,10 @@ class OnboardingController extends GetxController {
       ],
     ),
   ];
+
+  @override
+  void onInit() {
+    _loadFromStorage();
+    super.onInit();
+  }
 }

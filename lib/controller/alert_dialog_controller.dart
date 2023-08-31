@@ -23,7 +23,6 @@ class AlertDialogController extends GetxController {
       );
       emailC.clear();
       passwordC.clear();
-
       Get.toNamed(Routes.home);
     } catch (e) {
       if (e.toString().contains("invalid-email")) {
