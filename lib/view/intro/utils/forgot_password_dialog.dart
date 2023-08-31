@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starbuck_clone/controller/alert_dialog_controller.dart';
+import 'package:starbuck_clone/routes/routes.dart';
 
 class ForgetPasswordDialog extends StatelessWidget {
   ForgetPasswordDialog({super.key});
@@ -101,19 +102,22 @@ class ForgetPasswordDialog extends StatelessWidget {
               const SizedBox(
                 width: 15.0,
               ),
-              Container(
-                width: 80,
-                height: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: Colors.green,
-                ),
-                child: const Center(
-                  child: Text(
-                    "SEND",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () => Get.toNamed(Routes.home),
+                child: Container(
+                  width: 80,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: Colors.green,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "SEND",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
