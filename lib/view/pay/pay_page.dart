@@ -6,17 +6,28 @@ class PayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(20.0),
-            child: const Column(
-              children: [
-                Text("text"),
-              ],
-            ),
+      drawer: const SafeArea(
+        child: Drawer(
+          child: DrawerHeader(
+            child: Text("text"),
           ),
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Builder(builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: const Icon(
+                  Icons.menu,
+                  size: 24.0,
+                ),
+              );
+            }),
+          ],
         ),
       ),
     );
