@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -198,6 +199,178 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget caroselBanner() {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            CarouselSlider.builder(
+              carouselController: homeC.carouselController,
+              itemCount: homeC.imgList.length,
+              itemBuilder: (context, index, realIndex) {
+                return Image.asset(
+                  homeC.imgList[index],
+                  fit: BoxFit.fill,
+                );
+              },
+              options: CarouselOptions(
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.3,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index, reason) {
+                  homeC.currentSlider.value = index;
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: homeC.imgList
+                  .asMap()
+                  .entries
+                  .map(
+                    (e) => GestureDetector(
+                      onTap: () =>
+                          homeC.carouselController.animateToPage(e.key),
+                      child: Obx(
+                        () => Container(
+                          width: homeC.currentSlider.value == e.key ? 42.0 : 12,
+                          height: 12.0,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                            horizontal: 4.0,
+                          ),
+                          decoration: BoxDecoration(
+                            // shape: BoxShape.circle,
+                            borderRadius: BorderRadius.circular(16),
+                            color:
+                                (Theme.of(context).brightness == Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black)
+                                    .withOpacity(
+                              homeC.currentSlider.value == e.key ? 0.9 : 0.4,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget cardLastOffer() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Latest Offers",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20, // Menambahkan garis bawah
+                    // Ketebalan garis bawah
+                  ),
+                ),
+                Text(
+                  "See All",
+                  style: TextStyle(
+                    decoration:
+                        TextDecoration.underline, // Menambahkan garis bawah
+                    decorationColor: Colors.grey, // Warna garis bawah
+                    decorationThickness: 2.0, // Ketebalan garis bawah
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Scoops Of Delight",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        const SizedBox(
+                          child: Text(
+                            "Have you tried one of latest ice cream series menu #DarkbrownisColdBrew ",
+                            maxLines: 2,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          width: 120,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: const Color(0xff00653e),
+                              borderRadius: BorderRadius.circular(32),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade300,
+                                  blurRadius: 0.7,
+                                  offset: const Offset(2, 7),
+                                )
+                              ]),
+                          child: const Center(
+                            child: Text(
+                              "View Details",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30)
+                      ],
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset(
+                      'assets/banner.png',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     List<Widget> widget = [
       SafeArea(
         child: Stack(
@@ -222,6 +395,8 @@ class HomePage extends StatelessWidget {
               children: [
                 topHeader(),
                 cardRewards(),
+                caroselBanner(),
+                cardLastOffer(),
               ],
             ),
           ],
