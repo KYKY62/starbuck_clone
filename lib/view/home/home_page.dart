@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,35 +40,55 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-            const Row(
+            Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 35,
                   backgroundImage: NetworkImage(
                     "https://i.ibb.co/PGv8ZzG/me.jpg",
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Good Afternoon,",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      "Rizky Akbar Siregar",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
+                    FutureBuilder(
+                      future: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser?.uid)
+                          .get(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Text(
+                            "User",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          );
+                        } else {
+                          final data = snapshot.data!.data();
+                          final namaPengguna = data!['firstname'];
+                          return Text(
+                            namaPengguna,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          );
+                        }
+                      },
+                    )
                   ],
                 ),
               ],
@@ -432,7 +453,6 @@ class HomePage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       homeC.currentTab.value = 0;
-                      print(homeC.currentTab.value);
                     },
                     child: const SizedBox(
                       width: 36,
