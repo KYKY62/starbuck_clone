@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starbuck_clone/controller/home_controller.dart';
+import 'package:starbuck_clone/view/home/utils/drawer_utils.dart';
 import 'package:starbuck_clone/view/menu/menu_page.dart';
 import 'package:starbuck_clone/view/pay/pay_page.dart';
 import 'package:starbuck_clone/view/reward/reward_page.dart';
@@ -80,6 +81,7 @@ class HomePage extends StatelessWidget {
                         } else {
                           final data = snapshot.data!.data();
                           final namaPengguna = data!['firstname'];
+
                           return Text(
                             namaPengguna,
                             style: const TextStyle(
@@ -431,12 +433,10 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       drawer: const SafeArea(
-        child: Drawer(
-          child: DrawerHeader(
-            child: Text("text"),
-          ),
-        ),
-      ),
+          child: DrawerUtils(
+        nama: "Rizk",
+        email: "Rizk@",
+      )),
       bottomNavigationBar: SafeArea(
         child: Stack(
           children: [
