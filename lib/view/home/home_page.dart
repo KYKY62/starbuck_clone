@@ -425,7 +425,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      const PayPage(),
+      PayPage(),
       const RewardPage(),
       const MenuPage(),
       const StorePage(),
