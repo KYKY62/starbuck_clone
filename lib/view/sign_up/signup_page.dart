@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starbuck_clone/controller/signup_controller.dart';
-import 'package:starbuck_clone/view/sign_up/utils/textform_password_widget.dart';
-import 'package:starbuck_clone/view/sign_up/utils/textform_widget.dart';
+import 'package:starbuck_clone/utils/textform_password_widget.dart';
+import 'package:starbuck_clone/utils/textform_widget.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
