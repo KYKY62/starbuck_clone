@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starbuck_clone/controller/pay_controller.dart';
+import 'package:starbuck_clone/themes/themes.dart';
 import 'package:starbuck_clone/view/pay/widget/pay_tabbar.dart';
 
 class PayPage extends StatelessWidget {
@@ -66,7 +67,7 @@ class PayPage extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: payC.currentTab.value == 0
-                                      ? const Color(0xff044229)
+                                      ? mainColor
                                       : Colors.transparent,
                                 ),
                               ))
@@ -94,7 +95,7 @@ class PayPage extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: payC.currentTab.value == 1
-                                      ? const Color(0xff044229)
+                                      ? mainColor
                                       : Colors.transparent,
                                 ),
                               ))
@@ -122,7 +123,7 @@ class PayPage extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: payC.currentTab.value == 2
-                                      ? const Color(0xff044229)
+                                      ? mainColor
                                       : Colors.transparent,
                                 ),
                               ))

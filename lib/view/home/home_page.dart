@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starbuck_clone/controller/home_controller.dart';
+import 'package:starbuck_clone/themes/themes.dart';
 import 'package:starbuck_clone/view/home/utils/drawer_utils.dart';
 import 'package:starbuck_clone/view/menu/menu_page.dart';
 import 'package:starbuck_clone/view/pay/pay_page.dart';
@@ -118,7 +119,7 @@ class HomePage extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           height: 180,
           decoration: BoxDecoration(
-            color: const Color(0xffeed793),
+            color: celadonColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
@@ -139,12 +140,12 @@ class HomePage extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(left: 20.0),
                               child: Text(
                                 "10 /",
@@ -154,38 +155,38 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 10.0),
+                              padding: const EdgeInsets.only(left: 10.0),
                               child: Text(
                                 "100",
                                 style: TextStyle(
-                                  color: Color(0xff00653e),
+                                  color: secondaryColor,
                                   fontSize: 18,
                                 ),
                               ),
                             ),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Icon(
                               Icons.star,
-                              color: Color(0xff044259),
+                              color: mainColor,
                               size: 14.0,
                             ),
                           ],
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Padding(
-                          padding: EdgeInsets.only(left: 20.0),
+                          padding: const EdgeInsets.only(left: 20.0),
                           child: StepProgressIndicator(
                             totalSteps: 100,
                             currentStep: 10,
                             size: 10,
                             padding: 0,
                             selectedColor: Colors.green,
-                            unselectedColor: Color(0xff00653e),
-                            roundedEdges: Radius.circular(10),
+                            unselectedColor: secondaryColor,
+                            roundedEdges: const Radius.circular(10),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Padding(
+                        const SizedBox(height: 10),
+                        const Padding(
                           padding: EdgeInsets.only(left: 20),
                           child: Text(
                             "90 Starts For Next Level",
@@ -198,20 +199,20 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 20),
-                  const Row(
+                  Row(
                     children: [
                       Column(
                         children: [
                           Icon(
                             Icons.star,
-                            color: Color(0xff044229),
+                            color: mainColor,
                             size: 52.0,
                           ),
-                          Text("Rewards"),
+                          const Text("Rewards"),
                         ],
                       ),
-                      SizedBox(width: 15),
-                      Text("10 Stars"),
+                      const SizedBox(width: 15),
+                      const Text("10 Stars"),
                     ],
                   ),
                 ],
@@ -355,7 +356,7 @@ class HomePage extends StatelessWidget {
                           width: 120,
                           height: 30,
                           decoration: BoxDecoration(
-                              color: const Color(0xff00653e),
+                              color: secondaryColor,
                               borderRadius: BorderRadius.circular(32),
                               boxShadow: [
                                 BoxShadow(
@@ -444,7 +445,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               decoration: BoxDecoration(
-                color: const Color(0xff044229),
+                color: mainColor,
                 borderRadius: BorderRadius.circular(24),
               ),
               child: Row(
@@ -534,7 +535,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xffeed792),
+                      color: celadonColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Padding(

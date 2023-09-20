@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starbuck_clone/themes/themes.dart';
 
 class PayTabBar extends StatelessWidget {
   const PayTabBar({super.key});
@@ -19,16 +20,16 @@ class PayTabBar extends StatelessWidget {
           const SizedBox(
             height: 15.0,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Rp. 0",
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 30),
                 child: Text(
                   "Active",
@@ -42,7 +43,7 @@ class PayTabBar extends StatelessWidget {
                 "TOP UP",
                 style: TextStyle(
                   fontSize: 20,
-                  color: Color(0xff044229),
+                  color: mainColor,
                 ),
               ),
             ],
@@ -90,7 +91,7 @@ class PayTabBar extends StatelessWidget {
                   width: 60,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: const Color(0xff00753e),
+                    color: secondaryColor,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Center(
