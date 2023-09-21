@@ -9,7 +9,6 @@ import 'package:starbuck_clone/view/pay/widget/virtual_account_tabbar.dart';
 class PayPage extends StatelessWidget {
   PayPage({super.key});
 
-  // final payC = Get.put(PayController());
   final homeC = Get.put(HomeController());
 
   @override

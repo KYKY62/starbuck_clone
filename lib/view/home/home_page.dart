@@ -427,17 +427,13 @@ class HomePage extends StatelessWidget {
         ),
       ),
       PayPage(),
-      const RewardPage(),
+      RewardPage(),
       const MenuPage(),
       const StorePage(),
     ];
 
     return Scaffold(
-      drawer: const SafeArea(
-          child: DrawerUtils(
-        nama: "Rizk",
-        email: "Rizk@",
-      )),
+      drawer: const SafeArea(child: DrawerUtils()),
       bottomNavigationBar: SafeArea(
         child: Stack(
           children: [

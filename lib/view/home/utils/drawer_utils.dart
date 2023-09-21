@@ -6,13 +6,7 @@ import 'package:starbuck_clone/view/home/utils/listtile_utils.dart';
 import 'package:starbuck_clone/view/home/utils/sublisttile_utils.dart';
 
 class DrawerUtils extends StatelessWidget {
-  const DrawerUtils({
-    Key? key,
-    required this.nama,
-    required this.email,
-  }) : super(key: key);
-  final String nama;
-  final String email;
+  const DrawerUtils({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

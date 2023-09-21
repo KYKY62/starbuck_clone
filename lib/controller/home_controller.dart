@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   final pinC = TextEditingController();
   final obsecurePin = true.obs;
 
+  final isRewardsPage = true.obs;
+
   current(int value) {
     currentTab.value = value;
   }
