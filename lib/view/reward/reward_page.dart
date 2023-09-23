@@ -4,6 +4,7 @@ import 'package:starbuck_clone/controller/home_controller.dart';
 import 'package:starbuck_clone/themes/themes.dart';
 import 'package:starbuck_clone/utils/line_utils.dart';
 import 'package:starbuck_clone/view/reward/benefit_reward.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class RewardPage extends StatelessWidget {
   RewardPage({super.key});
@@ -80,7 +81,71 @@ class RewardPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(height: 10.0),
+                      const SizedBox(height: 10),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          StepProgressIndicator(
+                            totalSteps: 25,
+                            currentStep: 10,
+                            size: 32,
+                            padding: 0,
+                            selectedColor: secondaryColor,
+                            unselectedColor: Colors.green.shade700,
+                            roundedEdges: const Radius.circular(10),
+                          ),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "10",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: 130,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: const Center(
+                                child: Text(
+                                  "View History",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                const Text("15"),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow.shade800,
+                                ),
+                                const Text("to next reward"),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       const LineUtils(),
                       const SizedBox(height: 10.0),
                       const Text("Membership Status"),
